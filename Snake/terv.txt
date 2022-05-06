@@ -1,0 +1,3 @@
+ablak x
+játékpanel x
+billentyűbemenet x
