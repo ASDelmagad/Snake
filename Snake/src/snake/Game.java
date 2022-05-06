@@ -11,7 +11,7 @@ public class Game
         this.gamePanel = gamePanel;
     }
 
-    // - - - - - [Game Functions]
+    // - - - - - [Game Functions] - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     /**
      * This function is called in every frame of the game to calculate new values
@@ -36,5 +36,21 @@ public class Game
     public void paintComponent(Graphics2D g2)
     {
         
+    }
+
+    // - - - - - [Key Functions] - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    public void keyTyped(char key)
+    {
+        
+    }
+    
+    public void keyPressed(int keyCode)
+    {
+
+    }
+
+    public void keyReleased(int keyCode)
+    {
+
     }
 }

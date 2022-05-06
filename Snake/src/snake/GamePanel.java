@@ -5,11 +5,28 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.swing.JPanel;
 
 public class GamePanel extends JPanel implements Runnable
 {
+    /**
+     * Need to add to this the key you want to use in binding.
+     */
+    private Set<Integer> keysToHandle = new HashSet<Integer>() {{
+        add(KeyEvent.VK_A); // Snake/Menu left/up
+        add(KeyEvent.VK_W); // Snake/Menu up
+        add(KeyEvent.VK_S); // Snake/Menu down
+        add(KeyEvent.VK_D); // Snake/Menu right/down
+        add(KeyEvent.VK_LEFT); // Snake/Menu left/up
+        add(KeyEvent.VK_UP); // Snake/Menu up
+        add(KeyEvent.VK_DOWN); // Snake/Menu down
+        add(KeyEvent.VK_RIGHT); // Snake/Menu right/down
+
+        add(KeyEvent.VK_P); // Pause ingame
+    }};
     final int tileSize = 48; //Size of a block
     final Game game;;
 
@@ -45,9 +62,9 @@ public class GamePanel extends JPanel implements Runnable
      * Ignored otherwise.
      * @param e
      */
-    public void keyTyped(KeyEvent e)
+    public void keyTyped(KeyEvent e) // typed uses keyChar insted of keyCode
     {
-        // Handle key events
+        game.keyTyped(e.getKeyChar());
     }
 
     /**
@@ -57,7 +74,10 @@ public class GamePanel extends JPanel implements Runnable
      */
     public void keyPressed(KeyEvent e)
     {
-        // Handle key events
+        int keyCode = e.getKeyCode();
+
+        if(keysToHandle.contains(keyCode))
+            game.keyPressed(keyCode);
     }
 
     /**
@@ -67,7 +87,10 @@ public class GamePanel extends JPanel implements Runnable
      */
     public void keyReleased(KeyEvent e)
     {
-        // Handle key events
+        int keyCode = e.getKeyCode();
+
+        if(keysToHandle.contains(keyCode))
+            game.keyReleased(keyCode);
     }
 
     // - - - - - [Getter/Setter Functions] - - - - - - - - - - - - - - - - - - - - - - - - -
