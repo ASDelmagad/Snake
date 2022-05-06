@@ -1,5 +1,6 @@
 package snake;
 
-public class GamePanel {
+public class GamePanel
+{
 
 }
