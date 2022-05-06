@@ -6,9 +6,12 @@ public class Game
 {
     private GamePanel gamePanel;
 
+    private Menu displayMenu; // The Menu object being displayed
+
     public Game(GamePanel gamePanel)
     {
         this.gamePanel = gamePanel;
+        this.displayMenu = new MainMenu();
     }
 
     // - - - - - [Game Functions] - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -35,22 +38,22 @@ public class Game
      */
     public void paintComponent(Graphics2D g2)
     {
-        
+        displayMenu.draw(g2);
     }
 
     // - - - - - [Key Functions] - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public void keyTyped(char key)
     {
-        
+        displayMenu.keyTyped(key);
     }
     
     public void keyPressed(int keyCode)
     {
-
+        displayMenu.keyPressed(keyCode);
     }
 
     public void keyReleased(int keyCode)
     {
-
+        displayMenu.keyReleased(keyCode);
     }
 }

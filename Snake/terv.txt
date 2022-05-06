@@ -1,3 +1,11 @@
 ablak x
 játékpanel x
 billentyűbemenet x
+Menürendszer x
+ - Alap menü objektum x
+ - Főmenü x
+  * Új Játék x
+  * Játék Betöltése x
+  * Ranglista x
+  * Beállítások x
+  * Kilépés x

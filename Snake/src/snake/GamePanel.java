@@ -26,6 +26,9 @@ public class GamePanel extends JPanel implements Runnable
         add(KeyEvent.VK_RIGHT); // Snake/Menu right/down
 
         add(KeyEvent.VK_P); // Pause ingame
+
+        add(KeyEvent.VK_ENTER); // Enter for menu choosing
+        add(KeyEvent.VK_SPACE); // Space for menu choosing
     }};
     final int tileSize = 48; //Size of a block
     final Game game;;
