@@ -11,7 +11,7 @@ public class Game
     public Game(GamePanel gamePanel)
     {
         this.gamePanel = gamePanel;
-        this.displayMenu = new MainMenu();
+        this.displayMenu = new MainMenu(this);
     }
 
     // - - - - - [Game Functions] - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -30,6 +30,11 @@ public class Game
     public void repaint()
     {
         gamePanel.repaint();
+    }
+
+    public void setMenu(Menu menu)
+    {
+        this.displayMenu = menu;
     }
 
     /**

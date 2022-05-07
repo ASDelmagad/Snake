@@ -9,6 +9,14 @@ public abstract class Menu
 {
     protected String[] menuOptions; // An array for menu options
     protected int playerOption;
+    protected Game game;
+    protected Menu previousMenu;
+
+    public Menu(Game game, Menu previousMenu)
+    {
+        this.game = game;
+        this.previousMenu = previousMenu;
+    }
 
     // - - - - - [Menu Methods]
     /**
@@ -98,6 +106,12 @@ public abstract class Menu
      * @return playerOption
      */
     public int getPlayerOption()            {return this.playerOption;}
+
+    /**
+     * Returns the menu opened before it or null if non had been opened before.
+     * @return previousMenu
+     */
+    public Menu getPreviusMenu()            {return this.previousMenu;}
 
     //------------------------------------------------------
 

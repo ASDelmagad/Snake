@@ -9,3 +9,8 @@ Menürendszer x
   * Ranglista x
   * Beállítások x
   * Kilépés x
+ - Új Játék Menü
+ - Játék Betöltése Menü
+ - Ranglista Menü
+ - Beállítások Menü
+ - Kilépés x
