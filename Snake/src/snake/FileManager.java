@@ -6,6 +6,11 @@ public class FileManager
 
     // - - - - - [Load Functions]
 
+    public Settings loadSettings()
+    {
+        return null;
+    }
+
     public Rankings loadRankings()
     {
         return null;
@@ -17,6 +22,11 @@ public class FileManager
     }
 
     // - - - - - [Save Functions]
+
+    public void saveSettings()
+    {
+        return;
+    }
 
     public void saveRankings(Rankings rankings)
     {

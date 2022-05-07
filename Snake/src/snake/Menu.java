@@ -12,6 +12,8 @@ public abstract class Menu
     protected Game game;
     protected Menu previousMenu;
 
+    protected boolean ignorePressedKeys = false;
+
     public Menu(Game game, Menu previousMenu)
     {
         this.game = game;
@@ -36,9 +38,6 @@ public abstract class Menu
      */
     public void draw(Graphics2D g2)
     {
-        final int offset_ysize = 100; // The y coordinate to start drawing options from
-        final int offset_ycorrector = 16; // The rectangle and menuoptions are at different positions. With this size we can correct it.
-
         // Bold and italic green Snake title
         g2.setColor(Color.green);
         g2.setFont(new Font("Serif", Font.ITALIC, 55));
@@ -46,20 +45,34 @@ public abstract class Menu
 
         for(int i = 0; i < menuOptions.length; i++)
         {
-            if(playerOption == i) // Background for selected menu, and black color for text
-            {
-                g2.setColor(new Color(194, 194, 194));
-                g2.fillRect(28, offset_ysize+23*i, 200, 20); // x_start, y_start, x_size, y_size
-                g2.setColor(Color.black);
-            }
-            else
-            {
-                g2.setColor(Color.white);
-            }
-
-            g2.setFont(new Font("Microsoft Yahei", Font.BOLD, 15));
-            g2.drawString(menuOptions[i], 28, offset_ycorrector+offset_ysize+23*i);
+            this.addVisibleOption(g2, i, i);
         }
+    }
+
+    /**
+     * Created a menuoption on g2
+     * @param g2 the graphics object to create the option on to
+     * @param i the id of the menuChoice from list menuOptions
+     * @param slot which slot to put into (place on y coordinate)
+     */
+    protected void addVisibleOption(Graphics2D g2, int i, int slot)
+    {
+        final int offset_ysize = 100; // The y coordinate to start drawing options from
+        final int offset_ycorrector = 16; // The rectangle and menuoptions are at different positions. With this size we can correct it.
+
+        if(playerOption == i) // Background for selected menu, and black color for text
+        {
+            g2.setColor(new Color(194, 194, 194));
+            g2.fillRect(28, offset_ysize+23*slot, 200, 20); // x_start, y_start, x_size, y_size
+            g2.setColor(Color.black);
+        }
+        else
+        {
+            g2.setColor(Color.white);
+        }
+
+        g2.setFont(new Font("Microsoft Yahei", Font.BOLD, 15));
+        g2.drawString(menuOptions[i], 28, offset_ycorrector+offset_ysize+23*slot);
     }
 
     /**
@@ -68,6 +81,17 @@ public abstract class Menu
      */
     public void keyPressed(int keyCode)
     {
+        if(this.ignorePressedKeys)
+        {
+            switch(keyCode)
+            {
+                case KeyEvent.VK_ENTER:         {this.handleMenuOption(); break;} // Handle current choice
+                case KeyEvent.VK_SPACE:         {this.handleMenuOption(); break;} // Handle current choice
+            }
+
+            return;
+        }
+
         switch(keyCode)
         {
             case KeyEvent.VK_ENTER:         {this.handleMenuOption(); break;} // Handle current choice
@@ -113,6 +137,12 @@ public abstract class Menu
      */
     public Menu getPreviusMenu()            {return this.previousMenu;}
 
+    /**
+     * Returns ignorePressedKeys. true if keypressed are ignore, false if not
+     * @return ignorePressedKeys
+     */
+    public boolean getIgnorePressedKeys()   {return this.ignorePressedKeys;}
+
     //------------------------------------------------------
 
     /**
@@ -154,5 +184,14 @@ public abstract class Menu
             this.playerOption = this.menuOptions.length - 1;
         
         this.game.playSound("menu_select.wav");
+    }
+
+    /**
+     * Sets ignorePressedKeys bollean value to ignorePressedKeys
+     * @param ignorePressedKeys
+     */
+    public void setIgnorePressedKeys(boolean ignorePressedKeys)
+    {
+        this.ignorePressedKeys = ignorePressedKeys;
     }
 }
