@@ -13,7 +13,7 @@ public class SoundPlayer
     private Float effectsGainLevel = (float)20.0 * (float)Math.log10(0.8); // Always new soundeffect control, so saving the value
 
     /**
-     * Plays bakcground music, only to be called once at the start of the game.
+     * Plays background music, only to be called once at the start of the game.
      * @param musicLocation
      */
     public void playMusic(String fileName)

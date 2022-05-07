@@ -21,3 +21,7 @@ Menürendszer x
  - Kilépés x
 Hanglejátszó x
 Mentés
+ - Ranglista class
+  (pályák set)
+ - Mentés/Betöltés class
+
