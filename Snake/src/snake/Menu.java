@@ -139,6 +139,8 @@ public abstract class Menu
 
         if(this.playerOption >= this.menuOptions.length)
             this.playerOption = 0;
+        
+        this.game.playSound("menu_select.wav");
     }
 
     /**
@@ -150,5 +152,7 @@ public abstract class Menu
 
         if(this.playerOption < 0)
             this.playerOption = this.menuOptions.length - 1;
+        
+        this.game.playSound("menu_select.wav");
     }
 }

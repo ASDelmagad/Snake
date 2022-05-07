@@ -30,5 +30,4 @@ public class Main {
 
 		gamePanel.startGameThread(); // Start game finally
 	}
-
 }
