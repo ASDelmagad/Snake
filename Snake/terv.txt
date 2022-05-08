@@ -3,6 +3,8 @@ coin.wav https://opengameart.org/content/sound-effects-pack-2
 background_music.wav Eric Skiff - A Night Of Dizzy Spells ♫ NO COPYRIGHT 8-bit Music + Background
 menu_select.wav https://opengameart.org/content/menu-selection-click
 
+HashMap - Map conversion
+
 ablak x
 játékpanel x
 billentyűbemenet x
@@ -20,8 +22,14 @@ Menürendszer x
  - Beállítások Menü
  - Kilépés x
 Hanglejátszó x
-Mentés
- - Ranglista class
+Mentés x
+ - Ranglista class x
   (pályák set)
- - Mentés/Betöltés class
-
+ - Mentés/Betöltés class x
+ - Pályanév: x
+   nehézség_pályanév_méret
+Pálya Betöltés
+Pálya class
+Pálya class felépítése:
+ - Objectek
+ - 

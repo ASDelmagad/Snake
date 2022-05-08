@@ -6,6 +6,7 @@ public class Game
 {
     private GamePanel gamePanel;
     private SoundPlayer soundPlayer;
+    private Settings settings;
 
     private Menu displayMenu; // The Menu object being displayed
 
@@ -55,9 +56,33 @@ public class Game
         displayMenu.draw(g2);
     }
 
+    /**
+     * Plays a sound from the sound folder with the given filename
+     * @param fileName
+     */
     public void playSound(String fileName)
     {
         this.soundPlayer.playSound("/sound/" + fileName);
+    }
+
+    /**
+     * Sets the settings object's key's variable to value if available
+     * @param key
+     * @param value
+     */
+    public void setSetting(String key, Object value)
+    {
+        settings.setSetting(key, value);
+    }
+
+    /**
+     * Gets setings object's key's variable if available
+     * @param key
+     * @return object, if available. null otherwise
+     */
+    public Object getSetting(String key)
+    {
+        return settings.getSetting(key);
     }
 
     // - - - - - [Key Functions] - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
