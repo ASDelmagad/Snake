@@ -1,9 +1,11 @@
 package snake;
 
+import java.io.File;
+
 public class GameMap
 {
-    public loadMap(File file)
+    public void loadMap(File file)
     {
-        
+
     }
 }

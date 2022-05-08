@@ -5,6 +5,9 @@ menu_select.wav https://opengameart.org/content/menu-selection-click
 
 HashMap - Map conversion
 
+Mapsizes:
+ 8, 16, 24, 32, 40
+
 ablak x
 játékpanel x
 billentyűbemenet x

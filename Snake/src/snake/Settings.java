@@ -13,9 +13,9 @@ public class Settings
         put("effectsVolume", (float)0.8);
 
         // New Game Settings
-        put("playerName", "");
+        put("playerName", "Player");
         put("mapSize", new ArrayList<Integer>(){{ add(16); add(16); }});
-        put("difficulty", "");
+        put("difficulty", "Easy");
     }};
 
     /**
@@ -36,6 +36,30 @@ public class Settings
     {
         if(this.settings.containsKey(key))
             return this.settings.get(key);
+
+        return null;
+    }
+
+    /**
+     * If key is available, return the string value connected to it. null otherwise
+     * This function handles value to string conversion that normally are not able to be handled.
+     * @param key
+     * @return key data if available, null otherwise
+     */
+    @SuppressWarnings("unchecked")
+    public String getSettingString(String key)
+    {
+        if(this.settings.containsKey(key))
+        {
+            // Handle mapsize text value
+            if(key.equals("mapSize"))
+            {
+                ArrayList<Integer> coordinates = (ArrayList<Integer>)this.settings.get(key);
+                return Integer.toString(coordinates.get(0)) + "x" + Integer.toString(coordinates.get(1));
+            }
+
+            return this.settings.get(key).toString();
+        }
 
         return null;
     }

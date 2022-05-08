@@ -145,7 +145,6 @@ public class FileManager
         try
         {
             file = new File(getClass().getResource(filePath).toURI());
-    
         }
         catch(Exception e)
         {

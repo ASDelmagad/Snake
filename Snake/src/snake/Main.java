@@ -29,14 +29,5 @@ public class Main {
 		window.setVisible(true); // Window to be visible
 
 		gamePanel.startGameThread(); // Start game finally
-
-		FileManager asd = new FileManager();
-
-		String[] dsa = asd.getLoadableMaps();
-
-		for(int i = 0; i < dsa.length; i++)
-		{
-			System.out.println(dsa[i]);
-		}
 	}
 }

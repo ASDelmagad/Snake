@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
+import java.awt.Polygon;
 
 public abstract class Menu
 {
@@ -54,16 +55,18 @@ public abstract class Menu
      * @param g2 the graphics object to create the option on to
      * @param i the id of the menuChoice from list menuOptions
      * @param slot which slot to put into (place on y coordinate)
+     * @param extraText this text gets put behind the text of menuoption
      */
-    protected void addVisibleOption(Graphics2D g2, int i, int slot)
+    protected void addVisibleOption(Graphics2D g2, int i, int slot, String extraText)
     {
+        // If variables changed, update addVisibleArrow slotPosition variable to fit them.
         final int offset_ysize = 100; // The y coordinate to start drawing options from
         final int offset_ycorrector = 16; // The rectangle and menuoptions are at different positions. With this size we can correct it.
 
         if(playerOption == i) // Background for selected menu, and black color for text
         {
             g2.setColor(new Color(194, 194, 194));
-            g2.fillRect(28, offset_ysize+23*slot, 200, 20); // x_start, y_start, x_size, y_size
+            g2.fillRect(28, offset_ysize+23*slot, 320, 20); // x_start, y_start, x_size, y_size
             g2.setColor(Color.black);
         }
         else
@@ -72,7 +75,43 @@ public abstract class Menu
         }
 
         g2.setFont(new Font("Microsoft Yahei", Font.BOLD, 15));
-        g2.drawString(menuOptions[i], 28, offset_ycorrector+offset_ysize+23*slot);
+        g2.drawString(menuOptions[i] + extraText, 28, offset_ycorrector+offset_ysize+23*slot);
+    }
+
+    protected void addVisibleArrow(Graphics2D g2, int slot, boolean fillLeft, boolean fillRight)
+    {
+        int screenSize = this.game.gamePanel.getScreenSize();
+        int slotPosition = 16/2+100+23*slot; // This adds up from addVisibleOption, shall be updated at change: ycorrector/2+ysize+23*slot
+
+        Polygon leftArrow = new Polygon();
+        Polygon rightArrow = new Polygon();
+        leftArrow.npoints = 3; rightArrow.npoints = 3;
+
+        leftArrow.xpoints = new int[] {12, 20, 20};
+        rightArrow.xpoints = new int[] {screenSize-12, screenSize-20, screenSize-20};
+
+        leftArrow.ypoints = rightArrow.ypoints = new int[] {slotPosition, slotPosition-8, slotPosition+8};
+
+        if(fillLeft)
+            g2.fillPolygon(leftArrow);
+        else
+            g2.drawPolygon(leftArrow);
+        
+        if(fillRight)
+            g2.fillPolygon(rightArrow);
+        else
+            g2.drawPolygon(rightArrow);
+    }
+
+    /**
+     * Constructor of function without extra text
+     * @param g2
+     * @param i
+     * @param slot
+     */
+    protected void addVisibleOption(Graphics2D g2, int i, int slot)
+    {
+        addVisibleOption(g2, i, slot, "");
     }
 
     /**

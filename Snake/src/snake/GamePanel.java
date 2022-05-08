@@ -30,10 +30,11 @@ public class GamePanel extends JPanel implements Runnable
         add(KeyEvent.VK_ENTER); // Enter for menu choosing
         add(KeyEvent.VK_SPACE); // Space for menu choosing
     }};
-    final int tileSize = 48; //Size of a block
+    final int tileSize = 24; //Size of a block
+    final int coreTileQuantity = 16;
     final Game game;;
 
-    private int tileQuantity = 8; // How much blocks are there in a row/column
+    private int tileQuantity = coreTileQuantity; // How much blocks are there in a row/column
 
     KeyHandler keyHandler = new KeyHandler(this); // Creating keyhandler object to handle input
     Thread gameThread; //Thread for starting the game
