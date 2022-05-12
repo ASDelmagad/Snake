@@ -88,6 +88,7 @@ public class NewGameMenu extends Menu
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void handleMenuOption()
     {
         // Finished with writing text
@@ -111,7 +112,9 @@ public class NewGameMenu extends Menu
         // Start game
         if(this.playerOption == 3)
         {
-            // START GAME
+            ArrayList<Integer> mapSizeSetting = (ArrayList<Integer>)this.game.getSetting("mapSize");
+            
+            this.game.startGame(this, this.game.getSettingString("difficulty"), mapSizeSetting.get(0));
         }
 
         if(this.playerOption == 4)

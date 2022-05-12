@@ -13,9 +13,9 @@ public class Settings
         put("effectsVolume", (float)0.8);
 
         // New Game Settings
-        put("playerName", "Player");
+        put("playerName", "Játékos");
         put("mapSize", new ArrayList<Integer>(){{ add(16); add(16); }});
-        put("difficulty", "Easy");
+        put("difficulty", "Könnyű");
     }};
 
     /**

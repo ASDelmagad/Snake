@@ -3,11 +3,13 @@ package snake;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
 import java.util.HashMap;
 
 public class FileManager
@@ -128,7 +130,7 @@ public class FileManager
      */
     public GameMap loadMap(String mapName)
     {
-        GameMap map = new GameMap();
+        GameMap map = null;
 
         return map;
     }
@@ -221,20 +223,20 @@ public class FileManager
      */
     public boolean saveMap(GameMap map, String saveName)
     {
-        File file;
-
-        try
-        {
-            file = new File(getClass().getResource("/saved_games/" + saveName + ".ser").toURI());
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-            return false;
-        }
+        File file = new File("/saved_games/" + saveName + ".ser");
 
         if(file.exists())
             return false;
+        
+        try
+        {
+            file.getParentFile().mkdir();
+            file.createNewFile();
+        }
+        catch (IOException e1)
+        {
+            e1.printStackTrace();
+        }
 
         try
         {

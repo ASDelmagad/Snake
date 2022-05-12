@@ -12,6 +12,7 @@ public abstract class Menu
     protected int playerOption;
     protected Game game;
     protected Menu previousMenu;
+    protected boolean isMap = false;
 
     protected boolean ignorePressedKeys = false;
 
@@ -48,6 +49,14 @@ public abstract class Menu
         {
             this.addVisibleOption(g2, i, i);
         }
+    }
+
+    /**
+     * Gets called in every frame by game object
+     * @param millisecs
+     */
+    public void update(long milisecs)
+    {
     }
 
     /**
@@ -171,10 +180,16 @@ public abstract class Menu
     public int getPlayerOption()            {return this.playerOption;}
 
     /**
+     * Returns true if menu is a map
+     * @return isMap
+     */
+    public boolean getIsMap()               {return this.isMap;}
+
+    /**
      * Returns the menu opened before it or null if non had been opened before.
      * @return previousMenu
      */
-    public Menu getPreviusMenu()            {return this.previousMenu;}
+    public Menu getPreviousMenu()            {return this.previousMenu;}
 
     /**
      * Returns ignorePressedKeys. true if keypressed are ignore, false if not

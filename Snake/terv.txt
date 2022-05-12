@@ -30,9 +30,20 @@ Mentés x
   (pályák set)
  - Mentés/Betöltés class x
  - Pályanév: x
-   nehézség_pályanév_méret
-Pálya Betöltés
-Pálya class
-Pálya class felépítése:
- - Objectek
- - 
+   nehézség_pályanév_méret x
+Pálya Betöltés x
+Pálya class x
+Pálya class felépítése: x
+ - Objectek x
+Állapotcsík x
+Mapgenerálási bug x
+Játék vége ablak x
+ - Játék vége szöveg x
+ - Név írása x
+ - Pontszám írása x
+ - Visszalépés opció x
+Megállítási lehetőség
+ - Mentés/Folytatás opció
+Pálya méret alapján ablakméret állítás x
+Pontrendszer x
+Kaja jó helyre generálása x

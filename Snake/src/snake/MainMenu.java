@@ -7,7 +7,7 @@ public class MainMenu extends Menu
         super(game, previousMenu);
 
         this.menuOptions = new String[]{
-            "Új Játék",             // 0
+            this.game.toUTF8("Új Játék"),             // 0
             "Játék Betöltése",      // 1
             "Ranglista",            // 2
             "Beállítások",          // 3

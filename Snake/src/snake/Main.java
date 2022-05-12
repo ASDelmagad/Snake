@@ -20,7 +20,7 @@ public class Main {
 		window.setResizable(false);
 		window.setTitle("Snake");
 
-		GamePanel gamePanel = new GamePanel(); // Create gamepanel game view
+		GamePanel gamePanel = new GamePanel(window); // Create gamepanel game view
 		window.add(gamePanel); // Add gamepanel to window
 
 		window.pack(); // Fits the window to gamePanel

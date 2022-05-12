@@ -5,9 +5,11 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class GamePanel extends JPanel implements Runnable
@@ -32,17 +34,20 @@ public class GamePanel extends JPanel implements Runnable
     }};
     final int tileSize = 24; //Size of a block
     final int coreTileQuantity = 16;
-    final Game game;;
+    final Game game;
 
+    private JFrame window;
     private int tileQuantity = coreTileQuantity; // How much blocks are there in a row/column
+    private int extraWidth = 0;
 
     KeyHandler keyHandler = new KeyHandler(this); // Creating keyhandler object to handle input
     Thread gameThread; //Thread for starting the game
 
-    public GamePanel()
+    public GamePanel(JFrame window)
     {
         game = new Game(this);
 
+        this.window = window;
         this.setPreferredSize(new Dimension(getScreenSize(), getScreenSize())); // Set gamepanel size
         this.setBackground(Color.black); // Set background to black color
         this.setDoubleBuffered(true); // Offscreen drawing, basically faster gameplay
@@ -106,6 +111,12 @@ public class GamePanel extends JPanel implements Runnable
     public int getTileSize()        {return this.tileSize;}
 
     /**
+     * Returns core tile quantity, the original tile quantity. Used for menus.
+     * @return coreTileQuantity
+     */
+    public int getCoreTileQuantity()    {return this.coreTileQuantity;}
+
+    /**
      * Return tileQuantity variable
      * @return tileQuantity
      */
@@ -117,7 +128,22 @@ public class GamePanel extends JPanel implements Runnable
      */
     public int getScreenSize()      {return this.tileQuantity*this.tileSize;}
 
+    /**
+     * Returns the extrawidth variable, used for status bar
+     * @return extraWidth
+     */
+    public int getExtraWidth()      {return this.extraWidth;}
+
     //------------------------------------
+
+    /**
+     * Sets extra width variable value
+     * @param width
+     */
+    public void setExtraWidth(int width)
+    {
+        this.extraWidth = width;
+    }
 
     /**
      * Sets GamePanel's tileQuantity variable to tileQuantity param's value
@@ -134,9 +160,22 @@ public class GamePanel extends JPanel implements Runnable
     @Override
     public void run()
     {
+        Date date;
+
         while(gameThread != null) // While the game is running
         {
-            game.update(); // Update values
+            date = new Date();
+            long milisecs = date.getTime();
+
+            game.update(milisecs); // Update values
+
+            Dimension dimension = new Dimension(getScreenSize(), getScreenSize() + getExtraWidth());
+
+            if(!this.getPreferredSize().equals(dimension))
+            {
+                this.setPreferredSize(dimension);
+                this.window.pack();
+            }
 
             game.repaint(); // Repaint the frame
         }
