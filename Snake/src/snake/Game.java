@@ -3,6 +3,7 @@ package snake;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Date;
@@ -50,7 +51,7 @@ public class Game
         this.gamePanel = gamePanel;
         this.soundPlayer = new SoundPlayer();
 
-        this.fileManager = new FileManager();
+        this.fileManager = new FileManager(this);
         this.settings = fileManager.loadSettings();
 
         this.displayMenu = new MainMenu(this);
@@ -180,9 +181,18 @@ public class Game
     * Returns the getLoadableMaps function from the filemanager
     * @return
     */
-   public ArrayList<File> getLoadableMaps()
+   public ArrayList<GameMap> getLoadableMaps()
     {
         return this.fileManager.getLoadableMaps();
+    }
+
+    /**
+     * Loads map and sets it as the current menu
+     * @param gameMap the map to be loaded
+     */
+    public void loadMap(GameMap gameMap)
+    {
+        this.displayMenu = gameMap;
     }
 
    /**

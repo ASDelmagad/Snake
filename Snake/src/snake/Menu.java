@@ -4,13 +4,14 @@ import java.awt.Graphics2D;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
+import java.io.Serializable;
 import java.awt.Polygon;
 
-public abstract class Menu
+public abstract class Menu implements Serializable
 {
     protected String[] menuOptions; // An array for menu options
     protected int playerOption;
-    protected Game game;
+    protected transient Game game;
     protected Menu previousMenu;
     protected boolean isMap = false;
 
@@ -18,7 +19,7 @@ public abstract class Menu
 
     public Menu(Game game, Menu previousMenu)
     {
-        this.game = game;
+        this.game = (Game)game;
         this.previousMenu = previousMenu;
     }
 

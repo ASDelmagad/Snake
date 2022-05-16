@@ -3,47 +3,8 @@ coin.wav https://opengameart.org/content/sound-effects-pack-2
 background_music.wav Eric Skiff - A Night Of Dizzy Spells ♫ NO COPYRIGHT 8-bit Music + Background
 menu_select.wav https://opengameart.org/content/menu-selection-click
 
-HashMap - Map conversion
-
-Mapsizes:
- 8, 16, 24, 32, 40
-
-ablak x
-játékpanel x
-billentyűbemenet x
-Menürendszer x
- - Alap menü objektum x
- - Főmenü x
-  * Új Játék x
-  * Játék Betöltése x
-  * Ranglista x
-  * Beállítások x
-  * Kilépés x
- - Új Játék Menü
- - Játék Betöltése Menü
- - Ranglista Menü
- - Beállítások Menü
- - Kilépés x
-Hanglejátszó x
-Mentés x
- - Ranglista class x
-  (pályák set)
- - Mentés/Betöltés class x
- - Pályanév: x
-   nehézség_pályanév_méret x
-Pálya Betöltés x
-Pálya class x
-Pálya class felépítése: x
- - Objectek x
-Állapotcsík x
-Mapgenerálási bug x
-Játék vége ablak x
- - Játék vége szöveg x
- - Név írása x
- - Pontszám írása x
- - Visszalépés opció x
-Megállítási lehetőség
- - Mentés/Folytatás opció
-Pálya méret alapján ablakméret állítás x
-Pontrendszer x
-Kaja jó helyre generálása x
+Játékhangok
+UTF-8 kódolású szövegforrás texteknek
+Beállításmenü XXXXXXX
+Játékbetöltés menü
+Rankrendszer

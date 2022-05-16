@@ -7,11 +7,10 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
-import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-public class GameMap extends Menu implements Serializable
+public class GameMap extends Menu
 {
     private String mapDifficulty = null;
     private int mapSize = 0;
@@ -27,9 +26,11 @@ public class GameMap extends Menu implements Serializable
     {
         super(game, previousMenu.getPreviousMenu()); // It's always the mainmenu
         super.isMap = true;
+        
+        Date date = new Date();
 
         this.playerName = playerName;
-        this.saveDate.setTime(Long.getLong(saveTime));
+        this.saveDate.setTime(saveTime == "0" ? date.getTime():Long.getLong(saveTime));
     
         this.menuOptions = new String[]{
             "Mentés",
@@ -496,6 +497,7 @@ public class GameMap extends Menu implements Serializable
     {
         if(super.playerOption == 0)
         {
+            this.saveDate = new Date();
             this.game.saveMap(this);
             this.game.setMenu(this.previousMenu);
         }
@@ -642,7 +644,7 @@ public class GameMap extends Menu implements Serializable
      */
     public String toString()
     {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         String strDate = dateFormat.format(this.saveDate);
 
         return strDate + " | " + this.playerName + " |" + this.mapSize  + " | " + this.mapDifficulty;

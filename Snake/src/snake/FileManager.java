@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -18,6 +19,13 @@ public class FileManager
 
     private File rankingsFile;// = "rankings.ser";
     private File settingsFile;// = "settings.ser";
+
+    private Game game;
+
+    public FileManager(Game game)
+    {
+        this.game = game;
+    }
 
     // - - - - - [Load Functions]
 
@@ -97,19 +105,19 @@ public class FileManager
      * Returns loadable map arraylist with file objects in /saved_games folder
      * @return String array
      */
-    public ArrayList<File> getLoadableMaps()
+    public ArrayList<GameMap> getLoadableMaps()
     {
         File directory;
-        ArrayList<File> mapFiles = new ArrayList<File>();
+        ArrayList<GameMap> mapObjects = new ArrayList<GameMap>();
 
         try
         {
-            directory = new File(getClass().getResource("/saved_games").toURI());
+            directory = new File("saved_games");
         }
         catch(Exception e)
         {
             e.printStackTrace();
-            return null;
+            return new ArrayList<GameMap>();
         }
 
         for(File file : directory.listFiles())
@@ -117,21 +125,43 @@ public class FileManager
             if(!file.getName().startsWith("saveGame"))
                 continue;
             
-            mapFiles.add(file);
+            GameMap loadedMap = (GameMap)loadMap(file);
+            
+            if(loadedMap == null)
+                continue;
+
+            mapObjects.add(loadedMap);
         }
             
-        return mapFiles;
+        return mapObjects;
     }
 
     /**
      * Returns a map object if found on the mapName param given
      * @param mapName
      */
-    public GameMap loadMap(String mapName)
+    public GameMap loadMap(File mapFile)
     {
-        GameMap map = null;
+        FileInputStream fileInputStream;
+        ObjectInputStream objectInputStream;
+        GameMap loadedMap;
 
-        return map;
+        try
+        {
+            fileInputStream = new FileInputStream(mapFile);
+            objectInputStream = new ObjectInputStream(fileInputStream);
+            loadedMap = (GameMap)objectInputStream.readObject();
+
+            objectInputStream.close();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            return null;
+        }
+
+        loadedMap.game = this.game;
+        return loadedMap;
     }
 
     /**
@@ -241,7 +271,7 @@ public class FileManager
         
         try
         {
-            file.mkdirs();
+            file.getParentFile().mkdirs();
             file.createNewFile();
         }
         catch (IOException e1)
@@ -253,6 +283,8 @@ public class FileManager
         {
             FileOutputStream fileOutputStream = new FileOutputStream(file);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            
+            objectOutputStream.useProtocolVersion(ObjectOutputStream.PROTOCOL_VERSION_2);
 
             objectOutputStream.writeObject(map);
 
