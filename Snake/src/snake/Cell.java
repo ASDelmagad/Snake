@@ -58,16 +58,15 @@ public class Cell extends Block
     {
         int tileSize = this.map.getTilesize();
 
-
         if(isTail)
         {
-            g2.drawImage(this.imageMap.get("grass"), coordX*tileSize, coordY*tileSize, tileSize, tileSize, null);
-            g2.drawImage(this.imageMap.get("tail_" + this.tailDirection), coordX*tileSize, coordY*tileSize, tileSize, tileSize, null);
+            g2.drawImage(this.map.game.imageMap.get("grass"), coordX*tileSize, coordY*tileSize, tileSize, tileSize, null);
+            g2.drawImage(this.map.game.imageMap.get("tail_" + this.tailDirection), coordX*tileSize, coordY*tileSize, tileSize, tileSize, null);
         }
         else
         {
-            g2.drawImage(this.imageMap.get("grass"), coordX*tileSize, coordY*tileSize, tileSize, tileSize, null);
-            g2.drawImage(this.imageMap.get("body_" + this.cellDirection), coordX*tileSize, coordY*tileSize, tileSize, tileSize, null);
+            g2.drawImage(this.map.game.imageMap.get("grass"), coordX*tileSize, coordY*tileSize, tileSize, tileSize, null);
+            g2.drawImage(this.map.game.imageMap.get("body_" + this.cellDirection), coordX*tileSize, coordY*tileSize, tileSize, tileSize, null);
         }
     }
 

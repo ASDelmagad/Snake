@@ -8,7 +8,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import java.util.HashMap;
 
@@ -23,7 +22,7 @@ public class FileManager
     // - - - - - [Load Functions]
 
     /**
-     * Loads settings data into a settings object from /data/settings.ser and returns that object
+     * Loads settings data into a settings object from settings.ser and returns that object
      * @return
      */
     @SuppressWarnings("unchecked")
@@ -33,7 +32,7 @@ public class FileManager
 
         if(settingsFile == null)
         {
-            settingsFile = getFile("/data/settings.ser");
+            settingsFile = getFile("data/settings.ser");
         
             if(settingsFile == null)
                 return settings;
@@ -59,7 +58,7 @@ public class FileManager
     }
 
     /**
-     * Loads rankings data into a rankings object from /data/rankings.ser and returns that object
+     * Loads rankings data into a rankings object from rankings.ser and returns that object
      * @return rankings
      */
     @SuppressWarnings("unchecked")
@@ -69,7 +68,7 @@ public class FileManager
 
         if(rankingsFile == null)
         {
-            rankingsFile = getFile("/data/rankings.ser");
+            rankingsFile = getFile("data/rankings.ser");
         
             if(rankingsFile == null)
                 return rankings;
@@ -95,14 +94,13 @@ public class FileManager
     }
 
     /**
-     * Returns loadable map string array with the names of found files in /saved_games folder
+     * Returns loadable map arraylist with file objects in /saved_games folder
      * @return String array
      */
-    public String[] getLoadableMaps()
+    public ArrayList<File> getLoadableMaps()
     {
         File directory;
-        File[] mapFiles;
-        List<String> mapFileNames = new ArrayList<String>();
+        ArrayList<File> mapFiles = new ArrayList<File>();
 
         try
         {
@@ -114,14 +112,15 @@ public class FileManager
             return null;
         }
 
-        mapFiles = directory.listFiles();
-
-        for(int i = 0; i < mapFiles.length; i++)
+        for(File file : directory.listFiles())
         {
-            mapFileNames.add(mapFiles[i].toString());
+            if(!file.getName().startsWith("saveGame"))
+                continue;
+            
+            mapFiles.add(file);
         }
             
-        return mapFileNames.toArray(new String[0]);
+        return mapFiles;
     }
 
     /**
@@ -142,19 +141,12 @@ public class FileManager
      */
     public File getFile(String filePath)
     {
-        File file;
+        File file = new File(filePath);
 
-        try
-        {
-            file = new File(getClass().getResource(filePath).toURI());
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-            return null;
-        }
-
-        return file;
+        if(file.exists())
+            return file;
+        
+        return null;
     }
 
     // - - - - - [Save Functions]
@@ -166,7 +158,18 @@ public class FileManager
     public void saveSettings(Settings settings)
     {
         if(settingsFile == null)
-            settingsFile = new File("/data/settings.ser");
+            settingsFile = new File("data/settings.ser");
+
+        if(!settingsFile.exists())
+            try
+            {
+                settingsFile.mkdirs();
+                if(!settingsFile.createNewFile())
+                    return;
+            } catch (IOException e1) {
+                e1.printStackTrace();
+                return;
+            }
 
         FileOutputStream fileOutputStream;
         ObjectOutputStream objectOutputStream;
@@ -188,13 +191,24 @@ public class FileManager
     }
 
     /**
-     * Saves rankings data into the /data/rankings.ser file
+     * Saves rankings data into the data/rankings.ser file
      * @param rankings
      */
     public void saveRankings(Rankings rankings)
     {
         if(rankingsFile == null)
-            rankingsFile = new File("/data/rankings.ser");
+            rankingsFile = new File("data/rankings.ser");
+        
+        if(!rankingsFile.exists())
+            try
+            {
+                rankingsFile.mkdirs();
+                if(!rankingsFile.createNewFile())
+                    return;
+            } catch (IOException e1) {
+                e1.printStackTrace();
+                return;
+            }
 
         FileOutputStream fileOutputStream;
         ObjectOutputStream objectOutputStream;
@@ -223,14 +237,11 @@ public class FileManager
      */
     public boolean saveMap(GameMap map, String saveName)
     {
-        File file = new File("/saved_games/" + saveName + ".ser");
-
-        if(file.exists())
-            return false;
+        File file = new File("saved_games/saveGame_" + saveName + ".ser");
         
         try
         {
-            file.getParentFile().mkdir();
+            file.mkdirs();
             file.createNewFile();
         }
         catch (IOException e1)

@@ -1,15 +1,13 @@
 package snake;
 
 import java.awt.Graphics2D;
-import java.util.Map;
-import java.awt.image.BufferedImage;
+import java.io.Serializable;
 
-public abstract class Block
+public abstract class Block implements Serializable
 {
     protected GameMap map;
     protected int coordX;
     protected int coordY;
-    protected Map<String, BufferedImage> imageMap;
     protected boolean isWall = false;
 
     protected int blockSize;
@@ -21,8 +19,6 @@ public abstract class Block
         this.coordY = y;
 
         this.blockSize = map.game.gamePanel.getTileSize();
-
-        this.imageMap = this.map.game.imageMap;
     }
 
     /**

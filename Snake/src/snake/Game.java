@@ -2,7 +2,9 @@ package snake;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -173,6 +175,15 @@ public class Game
    {
        return settings.getSettingString(key);
    }
+
+   /**
+    * Returns the getLoadableMaps function from the filemanager
+    * @return
+    */
+   public ArrayList<File> getLoadableMaps()
+    {
+        return this.fileManager.getLoadableMaps();
+    }
 
    /**
     * Returns a BufferedImage object identified by its path

@@ -13,8 +13,8 @@ public class Food extends Block
     public void draw(Graphics2D g2, int coordX, int coordY) {
         int tileSize = this.map.getTilesize();
 
-        g2.drawImage(this.imageMap.get("grass"), coordX*tileSize, coordY*tileSize, tileSize, tileSize, null);
-        g2.drawImage(this.imageMap.get("apple"), coordX*tileSize, coordY*tileSize, tileSize, tileSize, null);
+        g2.drawImage(this.map.game.imageMap.get("grass"), coordX*tileSize, coordY*tileSize, tileSize, tileSize, null);
+        g2.drawImage(this.map.game.imageMap.get("apple"), coordX*tileSize, coordY*tileSize, tileSize, tileSize, null);
     }
 
     @Override

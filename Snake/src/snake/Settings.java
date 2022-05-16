@@ -1,11 +1,12 @@
 package snake;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class Settings
+public class Settings implements Serializable
 {
     private Map<String, Object> settings = new HashMap<String, Object>(){{
         // Sound Settings

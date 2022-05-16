@@ -27,8 +27,8 @@ public class Head extends Cell
     {
         int tileSize = this.map.getTilesize();
 
-        g2.drawImage(this.imageMap.get("grass"), coordX*tileSize, coordY*tileSize, tileSize, tileSize, null);
-        g2.drawImage(this.imageMap.get("head_"+animatedDirection), coordX*tileSize, coordY*tileSize, tileSize, tileSize, null);
+        g2.drawImage(this.map.game.imageMap.get("grass"), coordX*tileSize, coordY*tileSize, tileSize, tileSize, null);
+        g2.drawImage(this.map.game.imageMap.get("head_"+animatedDirection), coordX*tileSize, coordY*tileSize, tileSize, tileSize, null);
     }
 
     @Override

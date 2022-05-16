@@ -2,12 +2,16 @@ package snake;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Date;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
-public class GameMap extends Menu
+public class GameMap extends Menu implements Serializable
 {
     private String mapDifficulty = null;
     private int mapSize = 0;
@@ -17,18 +21,25 @@ public class GameMap extends Menu
     private boolean gamePause = false;
     private int points = 0;
     private String playerName;
+    private Date saveDate = new Date();
 
-    public GameMap(Game game, Menu previousMenu, String playerName)
+    public GameMap(Game game, Menu previousMenu, String playerName, String saveTime)
     {
         super(game, previousMenu.getPreviousMenu()); // It's always the mainmenu
         super.isMap = true;
 
         this.playerName = playerName;
+        this.saveDate.setTime(Long.getLong(saveTime));
     
         this.menuOptions = new String[]{
             "Mentés",
             "Folytatás"
         };
+    }
+
+    public GameMap(Game game, Menu previousMenu, String playerName)
+    {
+        this(game, previousMenu, playerName, "0");
     }
 
     ArrayList<ArrayList<Block>> map = new ArrayList<ArrayList<Block>>();
@@ -624,5 +635,16 @@ public class GameMap extends Menu
     public void setGameEnd(boolean gameEnd)
     {
         this.gameEnd = gameEnd;
+    }
+
+    /** 
+     * Returns a text of string containing its savetime, playername, mapsize and difficulty.
+     */
+    public String toString()
+    {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        String strDate = dateFormat.format(this.saveDate);
+
+        return strDate + " | " + this.playerName + " |" + this.mapSize  + " | " + this.mapDifficulty;
     }
 }

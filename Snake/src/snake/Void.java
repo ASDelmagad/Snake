@@ -15,7 +15,7 @@ public class Void extends Block
     {
         int tileSize = this.map.getTilesize();
         
-        g2.drawImage(this.imageMap.get("grass"), coordX*tileSize, coordY*tileSize, tileSize, tileSize, null);
+        g2.drawImage(this.map.game.imageMap.get("grass"), coordX*tileSize, coordY*tileSize, tileSize, tileSize, null);
     }
 
     @Override
