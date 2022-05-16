@@ -6,11 +6,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class FileManager
 {
@@ -33,7 +32,6 @@ public class FileManager
      * Loads settings data into a settings object from settings.ser and returns that object
      * @return
      */
-    @SuppressWarnings("unchecked")
     public Settings loadSettings()
     {
         Settings settings = new Settings();
@@ -53,7 +51,9 @@ public class FileManager
         {
             fileInputStream = new FileInputStream(settingsFile);
             objectInputStream = new ObjectInputStream(fileInputStream);
-            settings.setSettings((HashMap<String, Object>)objectInputStream.readObject());
+            settings = (Settings)objectInputStream.readObject();
+
+            System.out.println("ASD");
 
             objectInputStream.close();
         }
@@ -69,7 +69,6 @@ public class FileManager
      * Loads rankings data into a rankings object from rankings.ser and returns that object
      * @return rankings
      */
-    @SuppressWarnings("unchecked")
     public Rankings loadRankings()
     {
         Rankings rankings = new Rankings();
@@ -89,7 +88,7 @@ public class FileManager
         {
             fileInputStream = new FileInputStream(rankingsFile);
             objectInputStream = new ObjectInputStream(fileInputStream);
-            rankings.setRankings((Collection<Rank>)objectInputStream.readObject());
+            rankings = (Rankings)objectInputStream.readObject();
 
             objectInputStream.close();
         }
@@ -193,7 +192,7 @@ public class FileManager
         if(!settingsFile.exists())
             try
             {
-                settingsFile.mkdirs();
+                settingsFile.getParentFile().mkdirs();
                 if(!settingsFile.createNewFile())
                     return;
             } catch (IOException e1) {
@@ -232,7 +231,7 @@ public class FileManager
         if(!rankingsFile.exists())
             try
             {
-                rankingsFile.mkdirs();
+                rankingsFile.getParentFile().mkdirs();
                 if(!rankingsFile.createNewFile())
                     return;
             } catch (IOException e1) {

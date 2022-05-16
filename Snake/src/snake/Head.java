@@ -137,7 +137,8 @@ public class Head extends Cell
      */
     public void die()
     {
-        this.map.setGameEnd(true);;
+        this.map.game.playSound("hit.wav");
+        this.map.setGameEnd(true);
     }
 
     /**

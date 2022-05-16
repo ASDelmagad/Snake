@@ -32,7 +32,7 @@ public class LoadGameMenu extends Menu
             "",
             "",
             "",
-            "Visszalépés"
+            this.game.getText("STEPBACK")
         };
     }
 
@@ -61,7 +61,7 @@ public class LoadGameMenu extends Menu
             this.addVisibleOption(g2, i-getMenuState(), i-getMenuState());
         }
 
-        this.addVisibleOption(g2, 5, 6, "                              Lapozás");
+        this.addVisibleOption(g2, 5, 6, "                              " + this.game.getText("NEXTPAGE"));
         this.addVisibleOption(g2, 6, 8);
 
         if(this.ignorePressedKeys)
@@ -94,8 +94,6 @@ public class LoadGameMenu extends Menu
     @Override
     public void keyPressed(int keyCode)
     {
-        System.out.println(loadableMaps.size());
-
         if(!this.ignorePressedKeys)
         {
             super.keyPressed(keyCode);
@@ -103,7 +101,6 @@ public class LoadGameMenu extends Menu
             
             if(this.playerOption < 5 && !(keyCode == KeyEvent.VK_SPACE || keyCode == KeyEvent.VK_ENTER))
             {
-                System.out.println(getMenuState() + " | " + loadableMaps.size());
                 if(getMenuState()+this.playerOption >= loadableMaps.size())
                     if(previousPlayerOption != 5)
                         this.playerOption = 5;

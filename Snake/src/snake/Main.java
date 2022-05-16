@@ -1,8 +1,5 @@
 package snake;
 
-import java.io.File;
-import java.io.IOException;
-
 import javax.swing.JFrame;
 
 public class Main {
@@ -18,14 +15,6 @@ public class Main {
 	public static void main(String[] args)
 	{
 		// Create JFrame window for the game
-		File currentDir = new File(".");
-		try {
-			System.out.println(currentDir.getCanonicalPath());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 		JFrame window = new JFrame();
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setResizable(false);

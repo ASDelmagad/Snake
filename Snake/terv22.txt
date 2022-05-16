@@ -3,8 +3,5 @@ coin.wav https://opengameart.org/content/sound-effects-pack-2
 background_music.wav Eric Skiff - A Night Of Dizzy Spells ♫ NO COPYRIGHT 8-bit Music + Background
 menu_select.wav https://opengameart.org/content/menu-selection-click
 
-Játékhangok
-UTF-8 kódolású szövegforrás texteknek
-Beállításmenü
-Játékbetöltés menü XXXXXX
 Rankrendszer
+Rankmenü

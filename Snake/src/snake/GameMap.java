@@ -233,6 +233,8 @@ public class GameMap extends Menu
      */
     public void foodEaten()
     {
+        this.game.playSound("coin.wav");
+
         for(int i = 0; i < snake.size(); i++)
         {
             snake.get(i).setLife(snake.get(i).getLife() + 1);
@@ -636,6 +638,7 @@ public class GameMap extends Menu
      */
     public void setGameEnd(boolean gameEnd)
     {
+        this.game.addRank(new Rank(this.playerName, this.points));
         this.gameEnd = gameEnd;
     }
 

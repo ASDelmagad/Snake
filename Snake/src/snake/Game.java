@@ -2,8 +2,10 @@ package snake;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.File;
-import java.io.Serializable;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Date;
@@ -38,11 +40,13 @@ public class Game
         put("tree", getImage("/textures/tree.png"));
         put("apple", getImage("/textures/apple.png"));
     }};// Szöveget UTF-8 kódolásban ideírni
+    protected Map<String, String> utf8Text = getUTF8Texts();
 
     protected GamePanel gamePanel;
     private SoundPlayer soundPlayer;
     private FileManager fileManager;
     private Settings settings;
+    private Rankings rankings;
 
     private Menu displayMenu; // The Menu object being displayed
 
@@ -51,12 +55,16 @@ public class Game
         this.gamePanel = gamePanel;
         this.soundPlayer = new SoundPlayer();
 
+        this.soundPlayer.playMusic("/sound/background_music.wav"); // Eric Skiff - A Night Of Dizzy Spells ♫ NO COPYRIGHT 8-bit Music + Background
+
         this.fileManager = new FileManager(this);
         this.settings = fileManager.loadSettings();
+        this.soundPlayer.setBackgroundVolume((float)this.settings.getSetting("backgroundVolume"));
+        this.soundPlayer.setEffectsVolume((float)this.settings.getSetting("effectsVolume"));
+        
+        this.rankings = fileManager.loadRankings();
 
         this.displayMenu = new MainMenu(this);
-
-        this.soundPlayer.playMusic("/sound/background_music.wav"); // Eric Skiff - A Night Of Dizzy Spells ♫ NO COPYRIGHT 8-bit Music + Background
     }
 
     // - - - - - [Game Functions] - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -127,6 +135,12 @@ public class Game
      */
     public void setMenu(Menu menu)
     {
+        if(this.displayMenu.getClass() == SettingsMenu.class)
+        {
+            this.fileManager.saveSettings(this.settings);
+            System.out.println(this.settings.getSetting("backgroundVolume"));
+        }
+
         this.displayMenu = menu;
     }
 
@@ -217,16 +231,83 @@ public class Game
    }
 
    /**
-    * Return a given string as a utf 8 coded string
+    * 
     * @param string
-    * @return the utf8 coded string
+    * @return
     */
-   public String toUTF8(String string)
-   {
-       byte[] bytes = string.getBytes(StandardCharsets.UTF_8);
+    public Map<String, String> getUTF8Texts()
+    {
+        Map<String, String> textMap = new HashMap<String, String>();
+ 
+        try
+        {
+            File file = new File(getClass().getResource("/data/utf8texts.txt").getFile());
+            FileInputStream fileInputStream = new FileInputStream(file);
+            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, StandardCharsets.UTF_8);
 
-       return new String(bytes, StandardCharsets.UTF_8);
-   }
+            try (BufferedReader bufferedReader = new BufferedReader(inputStreamReader)) {
+                String line;
+                String[] texts;
+
+                while((line = bufferedReader.readLine()) != null)
+                {
+                    texts = line.split(" ", 2);
+
+                    texts[1] = toUTF8(texts[1]);
+
+                    textMap.put(texts[0], texts[1]);
+                }
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+ 
+        return textMap;
+    }
+
+    public String toUTF8(String string)
+    {
+        byte[] bytes = string.getBytes(StandardCharsets.UTF_8);
+        return new String(bytes, StandardCharsets.UTF_8);
+    }
+
+    public String getText(String textKey)
+    {
+        return utf8Text.get(textKey);
+    }
+
+    public float getMusicVolume()
+    {
+        return this.soundPlayer.getBackgroundVolume();
+    }
+
+    public float getEffectsVolume()
+    {
+        return this.soundPlayer.getEffectsVolume();
+    }
+
+    public void setMusicVolume(float volume)
+    {
+        this.soundPlayer.setBackgroundVolume(volume);
+    }
+
+    public void setEffectsVolume(float volume)
+    {
+        this.soundPlayer.setEffectsVolume(volume);
+    }
+
+    public Rankings getRankings()
+    {
+        return this.rankings;
+    }
+
+    public void addRank(Rank rank)
+    {
+        this.rankings.addRank(rank);
+        this.fileManager.saveRankings(this.rankings);
+    }
 
     // - - - - - [Key Functions] - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**

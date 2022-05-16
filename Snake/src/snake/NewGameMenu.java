@@ -20,11 +20,11 @@ public class NewGameMenu extends Menu
         super(game, previousMenu);
 
         this.menuOptions = new String[]{
-            "Játékosnév: ",
-            "Pályaméret: ",
-            "Nehézség: ",
-            "Játék Kezdése",
-            "Visszalépés"
+            this.game.getText("NEWM_PLAYERNAME"),
+            this.game.getText("NEWM_MAPSIZE"),
+            this.game.getText("NEWM_DIFFICULTY"),
+            this.game.getText("NEWM_STARTGAME"),
+            this.game.getText("STEPBACK")
         };
 
         ArrayList<Integer> mapSize = (ArrayList<Integer>)this.game.getSetting("mapSize");

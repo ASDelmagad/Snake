@@ -79,7 +79,7 @@ public class SoundPlayer
      */
     public float getEffectsVolume()
     {
-        return this.effectsGainLevel;
+        return (float)Math.pow(10.0, this.effectsGainLevel / 20.0);
     }
 
     //-----------------------------------------------------------------
@@ -91,8 +91,14 @@ public class SoundPlayer
      */
     public void setBackgroundVolume(float volume)
     {
-        if(volume < 0.0 || volume > 1.0)
+        if(volume <= (float)0.01)
+        {
+            this.backgroundGainControl.setValue((float)0.0);
             return;
+        }
+        
+        if(volume > (float)1.0)
+            volume = (float)1.0;
         
         this.backgroundGainControl.setValue((float)20.0 * (float)Math.log10(volume)); // Some math from the internet on decibel to linear conversion
     }
@@ -103,8 +109,14 @@ public class SoundPlayer
      */
     public void setEffectsVolume(float volume)
     {
-        if(volume < 0.0 || volume > 1.0)
+        if(volume <= (float)0.0)
+        {
+            effectsGainLevel = (float)0.0;
             return;
+        }
+        
+        if(volume > (float)1.0)
+            volume = (float)1.0;
         
         effectsGainLevel = (float)20.0 * (float)Math.log10(volume); // Some math from the internet on decibel to linear conversion
     }
