@@ -37,7 +37,7 @@ class RankTest1 {
 			}
 		}
 
-		assertEquals(rankings.getRank(0).getPoints(), rankList.get(number));
+		assertEquals(rankings.getRank(0).getPoints(), rankList.get(number).getPoints());
 	}
 
 }

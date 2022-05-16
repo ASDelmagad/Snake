@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 public class FileManager
 {
-    // URL musicLocation = getClass().getResource(fileName);
     // there's a saved_games folder
 
     private File rankingsFile;// = "rankings.ser";

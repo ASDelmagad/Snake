@@ -241,7 +241,7 @@ public class Game
  
         try
         {
-            File file = new File(getClass().getResource("/data/utf8texts.txt").getFile());
+            File file = new File("data/utf8texts.txt");
             FileInputStream fileInputStream = new FileInputStream(file);
             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, StandardCharsets.UTF_8);
 
