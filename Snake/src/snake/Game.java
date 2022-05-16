@@ -339,6 +339,15 @@ public class Game
         this.fileManager.saveRankings(this.rankings);
     }
 
+    /**
+     * Returns displayMenu variable
+     * @return displayMenu variable
+     */
+    public Menu getDisplayMenu()
+    {
+        return displayMenu;
+    }
+
     // - - - - - [Key Functions] - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * This function gets called when keys are typed by gamepanel

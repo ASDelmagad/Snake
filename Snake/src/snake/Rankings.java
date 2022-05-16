@@ -19,6 +19,15 @@ public class Rankings implements Serializable
     }
 
     /**
+     * Returns rankings variable
+     * @return rankings
+     */
+    public List<Rank> getRankings()
+    {
+        return this.rankings;
+    }
+
+    /**
      * Returns rank by id from the rankings list
      * @param rankId
      * @return rank object
