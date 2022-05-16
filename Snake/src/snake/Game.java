@@ -61,7 +61,7 @@ public class Game
         this.settings = fileManager.loadSettings();
         this.soundPlayer.setBackgroundVolume((float)this.settings.getSetting("backgroundVolume"));
         this.soundPlayer.setEffectsVolume((float)this.settings.getSetting("effectsVolume"));
-        
+
         this.rankings = fileManager.loadRankings();
 
         this.displayMenu = new MainMenu(this);
@@ -231,9 +231,9 @@ public class Game
    }
 
    /**
-    * 
+    * Returns string,string mapping with the texts in the utf8texts.txt in utf8 code. Uses toUTF8
     * @param string
-    * @return
+    * @return The utf8 textmap
     */
     public Map<String, String> getUTF8Texts()
     {
@@ -267,42 +267,72 @@ public class Game
         return textMap;
     }
 
+    /**
+     * String to utf8 string converter
+     * @param string
+     */
     public String toUTF8(String string)
     {
         byte[] bytes = string.getBytes(StandardCharsets.UTF_8);
         return new String(bytes, StandardCharsets.UTF_8);
     }
 
+    /**
+     * Returns text by key from utf8Text map
+     * @param textKey
+     * @return the text
+     */
     public String getText(String textKey)
     {
         return utf8Text.get(textKey);
     }
 
+    /**
+     * @return Music settings volume
+     */
     public float getMusicVolume()
     {
         return this.soundPlayer.getBackgroundVolume();
     }
 
+    /**
+     * @return Effects setting volume
+     */
     public float getEffectsVolume()
     {
         return this.soundPlayer.getEffectsVolume();
     }
 
+    /**
+     * Sets backgroundVolume setting to volume
+     * @param volume
+     */
     public void setMusicVolume(float volume)
     {
         this.soundPlayer.setBackgroundVolume(volume);
     }
 
+    /**
+     * Sets effectsVolume setting to volume
+     * @param volume
+     */
     public void setEffectsVolume(float volume)
     {
         this.soundPlayer.setEffectsVolume(volume);
     }
 
+    /**
+     * @return rankings List
+     */
     public Rankings getRankings()
     {
         return this.rankings;
     }
 
+    /**
+     * Adds rank to rankings list
+     * @param rank
+     */
     public void addRank(Rank rank)
     {
         this.rankings.addRank(rank);

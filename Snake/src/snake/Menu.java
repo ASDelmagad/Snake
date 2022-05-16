@@ -88,6 +88,13 @@ public abstract class Menu implements Serializable
         g2.drawString(menuOptions[i] + extraText, 28, offset_ycorrector+offset_ysize+23*slot);
     }
 
+    /**
+     * Adds two arrows at the two side of the window for the menuoptions.
+     * @param g2
+     * @param slot in which slot it should be shown
+     * @param fillLeft whether to fill the left one
+     * @param fillRight whether to fill the right one
+     */
     protected void addVisibleArrow(Graphics2D g2, int slot, boolean fillLeft, boolean fillRight)
     {
         int screenSize = this.game.gamePanel.getScreenSize();

@@ -87,6 +87,9 @@ public class NewGameMenu extends Menu
         }
     }
 
+    /**
+     * Handles menu options
+     */
     @Override
     @SuppressWarnings("unchecked")
     public void handleMenuOption()
@@ -121,6 +124,9 @@ public class NewGameMenu extends Menu
             this.game.setMenu(this.previousMenu);
     }
 
+    /**
+     * Handles pressed keys.
+     */
     @Override
     public void keyPressed(int keyCode)
     {
@@ -165,6 +171,9 @@ public class NewGameMenu extends Menu
             this.handleMenuOption();
     }
 
+    /**
+     * Handles typed keys. Used for playername input
+     */
     @Override
     public void keyTyped(char key)
     {

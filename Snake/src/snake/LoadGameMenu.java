@@ -73,6 +73,9 @@ public class LoadGameMenu extends Menu
         }
     }
 
+    /**
+     * Refreshes saved game options, used for page changing
+     */
     private void refreshMenuOptions()
     {
         int l;
@@ -91,6 +94,9 @@ public class LoadGameMenu extends Menu
         }
     }
 
+    /**
+     * Handles pressed keys while in this menu
+     */
     @Override
     public void keyPressed(int keyCode)
     {
@@ -131,6 +137,9 @@ public class LoadGameMenu extends Menu
         this.previousPlayerOption = this.playerOption;
     }
 
+    /**
+     * Handles menu options while in this menu
+     */
     @Override
     public void handleMenuOption()
     {
@@ -158,13 +167,16 @@ public class LoadGameMenu extends Menu
             this.game.setMenu(this.previousMenu);
     }
 
-
     @Override
     public void keyTyped(char key) {
         // TODO Auto-generated method stub
         
     }
 
+    /**
+     * Gets menuState. menuPage*items on the page
+     * @return
+     */
     private int getMenuState()
     {
         return menuPage*5;

@@ -11,6 +11,9 @@ public class Wall extends Block
         //TODO Auto-generated constructor stub
     }
 
+    /**
+     * Handles wall graphics, draws grass and tree
+     */
     @Override
     public void draw(Graphics2D g2, int coordX, int coordY)
     {

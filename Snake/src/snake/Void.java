@@ -10,6 +10,9 @@ public class Void extends Block
         //TODO Auto-generated constructor stub
     }
 
+    /**
+     * Handles void graphics, draws grass
+     */
     @Override
     public void draw(Graphics2D g2, int coordX, int coordY)
     {
@@ -24,6 +27,7 @@ public class Void extends Block
         
     }
 
+    //Void cannot be hiz
     @Override
     public void hit(Head head, GameMap gameMap)
     {

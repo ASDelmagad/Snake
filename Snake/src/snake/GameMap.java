@@ -510,6 +510,10 @@ public class GameMap extends Menu
         }
     }
 
+    /**
+     * Handles pressed keys while playing
+     * @param keyCode
+     */
     @Override
     public void keyPressed(int keyCode)
     {

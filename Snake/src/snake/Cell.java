@@ -47,6 +47,9 @@ public class Cell extends Block
         this.life = life;
     }
 
+    /**
+     * Gets called when the cell should be deleted
+     */
     public void cellDie()
     {
         this.map.snake.remove(this);

@@ -17,12 +17,18 @@ public class Food extends Block
         g2.drawImage(this.map.game.imageMap.get("apple"), coordX*tileSize, coordY*tileSize, tileSize, tileSize, null);
     }
 
+    /**
+     * No update here
+     */
     @Override
     public void update(long millisecs) {
         // TODO Auto-generated method stub
         
     }
 
+    /**
+     * Gets called when the food gets eaten
+     */
     @Override
     public void hit(Head head, GameMap map)
     {

@@ -41,6 +41,10 @@ public class SoundPlayer
         }
     }
 
+    /**
+     * Plays a sound from the sound folder.
+     * @param filename the name of the file to be played
+     */
     public void playSound(String fileName)
     {
         try

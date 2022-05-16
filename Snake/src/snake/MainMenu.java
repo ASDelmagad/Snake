@@ -20,6 +20,9 @@ public class MainMenu extends Menu
         this(game, null);
     }
 
+    /**
+     * Handles menu actions
+     */
     @Override
     public void handleMenuOption()
     {

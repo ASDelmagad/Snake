@@ -22,6 +22,9 @@ public class Head extends Cell
         this.map.snake.add(this); // Add head to snake
     }
 
+    /**
+     * Draws head
+     */
     @Override
     public void draw(Graphics2D g2, int coordX, int coordY)
     {
@@ -31,6 +34,9 @@ public class Head extends Cell
         g2.drawImage(this.map.game.imageMap.get("head_"+animatedDirection), coordX*tileSize, coordY*tileSize, tileSize, tileSize, null);
     }
 
+    /**
+     * Updates snake connected variables
+     */
     @Override
     public void update(long milisecs)
     {
@@ -51,6 +57,10 @@ public class Head extends Cell
         step(snakeDirection);
     }
 
+    /**
+     * Handles the next type, called from update function
+     * @param direction
+     */
     public void step(String direction)
     {
         int cellCoordX = this.coordX;

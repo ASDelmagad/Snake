@@ -23,6 +23,9 @@ public class SettingsMenu extends Menu
         this(game, null);
     }
 
+    /**
+     * Handling menu graphics
+     */
     @Override
     public void draw(Graphics2D g2)
     {
@@ -54,6 +57,9 @@ public class SettingsMenu extends Menu
         }
     }
 
+    /**
+     * Handles chosen menu options while in this menu
+     */
     @Override
     public void handleMenuOption()
     {
@@ -75,6 +81,9 @@ public class SettingsMenu extends Menu
             this.game.setMenu(this.previousMenu);
     }
 
+    /**
+     * Handles pressed keys while in this menu
+     */
     @Override
     public void keyPressed(int keyCode)
     {

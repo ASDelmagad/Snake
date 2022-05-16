@@ -35,6 +35,10 @@ public class RankingsMenu extends Menu
         this(game, null);
     }
 
+    /**
+     * Handles menu draw
+     * @param g2 the graphics used for drawing
+     */
     @Override
     public void draw(Graphics2D g2)
     {
@@ -62,6 +66,9 @@ public class RankingsMenu extends Menu
         }
     }
 
+    /**
+     * Refreshes page
+     */
     private void refreshMenuOptions()
     {
         int l;
@@ -80,6 +87,9 @@ public class RankingsMenu extends Menu
         }
     }
 
+    /**
+     * Handles pressed keys
+     */
     @Override
     public void keyPressed(int keyCode)
     {
@@ -120,6 +130,9 @@ public class RankingsMenu extends Menu
         this.previousPlayerOption = this.playerOption;
     }
 
+    /**
+     * Handles chosen menu option
+     */
     @Override
     public void handleMenuOption()
     {
@@ -146,6 +159,9 @@ public class RankingsMenu extends Menu
         
     }
 
+    /**
+     * Returns menu state. menuPage*items per page
+     */
     private int getMenuState()
     {
         return menuPage*7;
