@@ -39,21 +39,21 @@ public class Cell extends Block
     public String getHeadDirection()    {return this.headDirection;}
 
     /**
-     * Sets life variable to life param
-     * @param life
-     */
-    public void setLife(int life)
-    {
-        this.life = life;
-    }
-
-    /**
      * Gets called when the cell should be deleted
      */
     public void cellDie()
     {
         this.map.snake.remove(this);
         map.setBlock(new Void(this.map, this.coordX, this.coordY));
+    }
+
+    /**
+     * Sets life variable to life param
+     * @param life
+     */
+    public void setLife(int life)
+    {
+        this.life = life;
     }
 
     @Override
